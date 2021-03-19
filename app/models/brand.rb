@@ -2,8 +2,10 @@ class Brand < ActiveRecord::Base
   include SlugIt
   include Validations
 
+  has_many :products
+
   validates :name, :format => {:with => Validations.name_regex,
-                               :message => "use letters, numbers, and _ please.".freeze,
+                               :message => "use letters, numbers, and _ please.",
                                :error_code => "Invalid Name"}
   validates_presence_of   :name, :message => "Name Required"
   validates_uniqueness_of :name, :message => "Name Exists"
