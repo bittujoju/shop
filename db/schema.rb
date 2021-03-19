@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20210319020724) do
     t.bigint "county_id"
     t.bigint "sale_id"
     t.float "price"
+    t.float "tax"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,6 +59,9 @@ ActiveRecord::Schema.define(version: 20210319020724) do
   end
 
   create_table "sales", force: :cascade do |t|
+    t.float "sold_price"
+    t.float "tax"
+    t.float "profit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

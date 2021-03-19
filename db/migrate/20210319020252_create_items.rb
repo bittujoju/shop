@@ -5,6 +5,7 @@ class CreateItems < ActiveRecord::Migration[5.1]
       t.belongs_to :county, index: true
       t.belongs_to :sale, index: true
       t.float      :price
+      t.float      :tax
       t.integer    :quantity
 
       t.timestamps
