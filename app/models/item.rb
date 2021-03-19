@@ -19,7 +19,7 @@ class Item < ActiveRecord::Base
   end
 
   def set_tax
-    self.tax = (product.cost_price * (county.tax/100)) * quantity
+    self.tax = (price * county.tax/100)
   end
 
 end
