@@ -1,4 +1,4 @@
-class Sale < ActiveRecord::Base
+class Sale < ApplicationRecord
 
   has_many :items
 

@@ -1,5 +1,4 @@
-class County < ActiveRecord::Base
-  include SlugIt
+class County < ApplicationRecord
   include Validations
 
   validates :name, :format => {:with => Validations.name_regex,
@@ -13,7 +12,4 @@ class County < ActiveRecord::Base
 
   before_save :add_slug
 
-  def add_slug
-    self.slug = make_slug(self.name)
-  end
 end

@@ -1,5 +1,4 @@
-class Brand < ActiveRecord::Base
-  include SlugIt
+class Brand < ApplicationRecord
   include Validations
 
   has_many :products
@@ -13,7 +12,4 @@ class Brand < ActiveRecord::Base
 
   before_save :add_slug
 
-  def add_slug
-    self.slug = make_slug(self.name)
-  end
 end
