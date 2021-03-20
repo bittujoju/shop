@@ -10,7 +10,7 @@ RSpec.describe Sale, :type => :model do
                                  :cost_price => 10,
                                  :brand => brand) }
   let(:product2) { Product.create(:name => "Product B",
-                                  :cost_price => 10,
+                                  :cost_price => 20,
                                   :brand => brand) }
   let(:item1) { Item.new(:product => product1,
                             :quantity => 100,
@@ -26,6 +26,21 @@ RSpec.describe Sale, :type => :model do
 
   it "is valid with valid attributes" do
     expect(subject).to be_valid
+  end
+
+  it "sets right value as sold price" do
+    subject.set_sold_price
+    expect(subject.sold_price).to eq(3900)
+  end
+
+  it "sets right value as tax" do
+    subject.set_tax
+    expect(subject.tax).to eq(390)
+  end
+
+  it "sets right value as profit" do
+    subject.set_profit
+    expect(subject.profit).to eq(3900 - (390 + 3000))
   end
 
 end

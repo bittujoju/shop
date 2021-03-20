@@ -25,9 +25,10 @@ class SalesController < ApplicationController
       sale = Sale.create({items: items})
     rescue Exception => e
       Rails.logger.error("Error while saving Sale : #{e.message}")
+      render json: {message: "Internal Server Error : #{e.message}"}, status: 500
     else
       Rails.logger.info("New Sale created with id : #{sale.id}")
-      render json: sale.to_json
+      render json: sale.to_json, status: 201
     end
   end
 end
