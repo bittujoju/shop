@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   belongs_to :county
   belongs_to :sale
 
+  validates_presence_of   :quantity, :message => "quantity Required"
   before_save :set_selling_price, :set_tax
 
   def name
@@ -15,7 +16,7 @@ class Item < ApplicationRecord
   end
 
   def set_selling_price
-    self.price = (product.cost_price * (1 + (county.mark_up/100))) * quantity
+    self.price = self.cost_price * (1 + (county.mark_up/100))
   end
 
   def set_tax
