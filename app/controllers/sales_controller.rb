@@ -4,7 +4,7 @@ class SalesController < ApplicationController
     items = []
 
     begin
-      params["items"].each do |item|
+      sale_params["items"].each do |item|
         product = Product.find_by_slug(item["product"])
         county = County.find_by_slug(item["county"])
         quantity = item["quantity"].to_i
@@ -30,5 +30,11 @@ class SalesController < ApplicationController
       Rails.logger.info("New Sale created with id : #{sale.id}")
       render json: sale.to_json, status: 201
     end
+  end
+
+  private
+
+  def sale_params
+    params.permit(items: [:product, :quantity, :county])
   end
 end
